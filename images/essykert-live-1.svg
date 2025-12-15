@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d0f1a" />
+      <stop offset="100%" stop-color="#18203a" />
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#d72672" stop-opacity="0.9" />
+      <stop offset="70%" stop-color="#0c0f1a" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#0c0f1a" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect width="1200" height="800" fill="url(#glow)"/>
+  <g fill="#f7f8fb" font-family="'Space Grotesk', 'Inter', Arial, sans-serif" text-anchor="middle">
+    <text x="600" y="180" font-size="64" font-weight="700" letter-spacing="4">ESSYKERT LIVE</text>
+    <text x="600" y="250" font-size="32" fill="#c7d2ff">Shetland · In the pit</text>
+  </g>
+  <g stroke="#d72672" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M200 580 L320 420 L440 560 L560 380 L680 540 L800 400 L920 560" opacity="0.8"/>
+    <path d="M160 620 L300 460 L420 600 L540 420 L660 580 L780 440 L940 600" opacity="0.45"/>
+  </g>
+  <g fill="#6cf5e6" opacity="0.9">
+    <circle cx="260" cy="520" r="14" />
+    <circle cx="520" cy="460" r="16" />
+    <circle cx="720" cy="520" r="13" />
+    <circle cx="880" cy="500" r="12" />
+  </g>
+  <g fill="#f7f8fb" font-size="22" font-family="'Inter', Arial, sans-serif" opacity="0.85">
+    <text x="200" y="700">Stage sweat</text>
+    <text x="520" y="700">Feedback haze</text>
+    <text x="900" y="700">Crowd surge</text>
+  </g>
+</svg>

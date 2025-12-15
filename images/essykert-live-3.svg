@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0c0b12" />
+      <stop offset="100%" stop-color="#10192b" />
+    </linearGradient>
+    <radialGradient id="glow3" cx="40%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#f4b94a" stop-opacity="0.8" />
+      <stop offset="60%" stop-color="#0c0b12" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#0c0b12" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg3)"/>
+  <rect width="1200" height="800" fill="url(#glow3)"/>
+  <g fill="#f7f8fb" font-family="'Space Grotesk', 'Inter', Arial, sans-serif" text-anchor="middle">
+    <text x="600" y="170" font-size="60" font-weight="700" letter-spacing="4">COASTAL FEEDBACK</text>
+    <text x="600" y="230" font-size="28" fill="#c7d2ff">Shetland only · Salt air + distortion</text>
+  </g>
+  <g stroke="#f4b94a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.8">
+    <polyline points="200,560 360,500 520,540 680,500 840,560 1000,520" />
+  </g>
+  <g fill="#6cf5e6" opacity="0.9">
+    <circle cx="280" cy="520" r="14" />
+    <circle cx="520" cy="520" r="16" />
+    <circle cx="760" cy="520" r="14" />
+  </g>
+  <g fill="#f7f8fb" font-size="22" font-family="'Inter', Arial, sans-serif" opacity="0.85">
+    <text x="240" y="700">Wind + wires</text>
+    <text x="600" y="700">Island amps</text>
+    <text x="960" y="700">North Sea nights</text>
+  </g>
+</svg>
