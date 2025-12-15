@@ -417,27 +417,23 @@ a, button {
   border: 1px solid var(--border);
   padding: 14px;
   box-shadow: var(--shadow);
+  display: grid;
+  gap: 10px;
 }
 
-.gallery-item p { margin-top: 12px; color: #d1d5db; }
+.gallery-item p {
+  margin: 0;
+  color: #d1d5db;
+  font-weight: 600;
+}
 
-.frame {
-  position: relative;
-  height: 180px;
+.gallery-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
   border-radius: 12px;
-  background: linear-gradient(145deg, rgba(255, 46, 99, 0.25), rgba(251, 191, 36, 0.2)),
-    conic-gradient(from 90deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
   border: 1px solid var(--border);
-  overflow: hidden;
-}
-
-.frame::before {
-  content: '';
-  position: absolute;
-  inset: 12px;
-  border-radius: 10px;
-  background: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04) 6px, transparent 6px, transparent 12px);
-  mix-blend-mode: screen;
+  background: #0f172a;
 }
 
 .connect {
