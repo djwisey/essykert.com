@@ -21,11 +21,11 @@ body {
   margin: 0;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background:
-    radial-gradient(circle at 15% 15%, rgba(255, 0, 0, 0.18), transparent 30%),
-    radial-gradient(circle at 80% 10%, rgba(120, 0, 0, 0.25), transparent 40%),
-    radial-gradient(circle at 60% 70%, rgba(20, 20, 20, 0.8), transparent 45%),
-    repeating-linear-gradient(120deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.03) 2px, transparent 2px, transparent 8px),
-    linear-gradient(135deg, #040304 0%, #0a0203 55%, #050407 100%);
+    radial-gradient(circle at 15% 20%, rgba(255, 120, 80, 0.28), transparent 35%),
+    radial-gradient(circle at 75% 15%, rgba(90, 30, 20, 0.45), transparent 45%),
+    radial-gradient(circle at 65% 65%, rgba(120, 10, 20, 0.4), transparent 40%),
+    radial-gradient(circle at 25% 75%, rgba(10, 20, 35, 0.7), transparent 50%),
+    linear-gradient(120deg, #030205 0%, #09060c 50%, #0b0b10 100%);
   color: var(--text);
   min-height: 100vh;
   line-height: 1.6;
@@ -33,26 +33,14 @@ body {
   position: relative;
 }
 
-/* Scratchy texture pass to push the grunge feel */
-body::before {
-  content: '';
+/* Procedural texture canvas sits behind content. */
+.grunge-canvas {
   position: fixed;
   inset: 0;
-  background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22 viewBox=%220 0 200 200%22%3E%3Cpath d=%22M10 32 L190 22 M20 70 L180 60 M8 120 L192 110 M30 160 L170 150%22 stroke=%22%23ffffff%22 stroke-width=%222%22 stroke-linecap=%22round%22 opacity=%220.18%22/%3E%3Cpath d=%22M50 12 L68 190 M130 20 L148 188%22 stroke=%22%23ffffff%22 stroke-width=%221.5%22 opacity=%220.12%22/%3E%3C/svg%3E');
-  opacity: 0.18;
-  mix-blend-mode: overlay;
-  pointer-events: none;
   z-index: 0;
-}
-
-/* Film grain overlay to add tactile grit */
-.noise {
-  position: fixed;
-  inset: 0;
-  background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 opacity=%220.05%22 width=%2264%22 height=%2264%22 viewBox=%220 0 64 64%22%3E%3Cpath fill=%22%23fff%22 d=%22M24 0h1v1h-1zm4 0h2v1h-2zM0 1h3v1H0zm6 0h1v1H6zm6 0h2v1h-2zM5 2h1v1H5zm7 0h1v1h-1zm4 0h2v1h-2zM0 3h1v1H0zm8 0h2v1H8zm3 0h2v1h-2zm23 0h1v1h-1zM7 4h1v1H7zm4 0h2v1h-2zm7 0h1v1h-1zm6 0h3v1h-3zm5 0h2v1h-2zm4 0h1v1h-1zM0 5h3v1H0zm5 0h2v1H5zm7 0h1v1h-1zm5 0h1v1h-1zm5 0h1v1h-1zm6 0h2v1h-2zM0 6h2v1H0zm13 0h1v1h-1zm3 0h1v1h-1zm3 0h1v1h-1zm4 0h2v1h-2zm7 0h1v1h-1zM6 7h1v1H6zm5 0h1v1h-1zm8 0h2v1h-2zm10 0h2v1h-2zm5 0h1v1h-1zM0 8h1v1H0zm4 0h2v1H4zm4 0h1v1H8zm3 0h1v1h-1zm5 0h1v1h-1zm7 0h2v1h-2zm5 0h1v1h-1zm4 0h2v1h-2zm5 0h1v1h-1zm5 0h1v1h-1zM2 9h2v1H2zm4 0h1v1H6zm6 0h1v1h-1zm11 0h1v1h-1zm7 0h2v1h-2zm6 0h1v1h-1zm4 0h1v1h-1zM0 10h1v1H0zm5 0h1v1H5zm3 0h1v1H8zm7 0h1v1h-1zm5 0h1v1h-1zm11 0h3v1h-3zm10 0h1v1h-1zM8 11h1v1H8zm4 0h1v1h-1zm5 0h1v1h-1zm5 0h1v1h-1zm4 0h2v1h-2zm8 0h1v1h-1zM0 12h3v1H0zm7 0h2v1H7zm6 0h1v1h-1zm4 0h1v1h-1zm4 0h1v1h-1zm5 0h1v1h-1zm4 0h1v1h-1zm8 0h2v1h-2zm5 0h2v1h-2zm5 0h1v1h-1zM5 13h1v1H5zm4 0h1v1H9zm9 0h1v1h-1zm4 0h1v1h-1zm6 0h2v1h-2zm10 0h2v1h-2zm6 0h1v1h-1zM0 14h1v1H0zm2 0h1v1H2zm5 0h2v1H7zm8 0h2v1h-2zm4 0h2v1h-2zm17 0h1v1h-1zm5 0h2v1h-2zm5 0h1v1h-1zM3 15h1v1H3zm6 0h1v1H9zm5 0h2v1h-2zm7 0h1v1h-1zm11 0h1v1h-1zM0 16h1v1H0zm3 0h3v1H3zm6 0h1v1h-1zm9 0h2v1h-2zm5 0h2v1h-2zm10 0h1v1h-1zm5 0h3v1h-3zm6 0h1v1h-1zM7 17h1v1H7zm4 0h1v1h-1zm6 0h2v1h-2zm4 0h1v1h-1zm5 0h1v1h-1zm7 0h1v1h-1zm5 0h2v1h-2zm7 0h1v1h-1zM0 18h2v1H0zm4 0h1v1H4zm3 0h1v1H7zm7 0h1v1h-1zm11 0h1v1h-1zm6 0h1v1h-1zm6 0h1v1h-1zm5 0h1v1h-1zm6 0h1v1h-1zM10 19h1v1h-1zm3 0h1v1h-1zm5 0h1v1h-1zm5 0h1v1h-1zm4 0h3v1h-3zm7 0h1v1h-1zm6 0h2v1h-2zm6 0h1v1h-1z"/%3E%3C/svg%3E');
   pointer-events: none;
-  mix-blend-mode: soft-light;
-  z-index: 1;
+  opacity: 0.65;
+  mix-blend-mode: screen;
 }
 
 /* Base link and button resets */
