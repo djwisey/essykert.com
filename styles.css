@@ -1,3 +1,4 @@
+/* Core color tokens and sizing for the grunge palette */
 :root {
   --bg: #050407;
   --panel: #10070a;
@@ -10,36 +11,65 @@
   --radius: 16px;
 }
 
+/* Global box sizing to keep layout predictable */
 * {
   box-sizing: border-box;
 }
 
+/* Base page styling with layered grunge gradients */
 body {
   margin: 0;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background: radial-gradient(circle at 20% 20%, rgba(255, 0, 0, 0.12), transparent 28%),
-    radial-gradient(circle at 80% 10%, rgba(120, 0, 0, 0.2), transparent 38%),
-    linear-gradient(135deg, #050407 0%, #0a0203 60%, #050407 100%);
+  background:
+    radial-gradient(circle at 15% 15%, rgba(255, 0, 0, 0.18), transparent 30%),
+    radial-gradient(circle at 80% 10%, rgba(120, 0, 0, 0.25), transparent 40%),
+    radial-gradient(circle at 60% 70%, rgba(20, 20, 20, 0.8), transparent 45%),
+    repeating-linear-gradient(120deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.03) 2px, transparent 2px, transparent 8px),
+    linear-gradient(135deg, #040304 0%, #0a0203 55%, #050407 100%);
   color: var(--text);
   min-height: 100vh;
   line-height: 1.6;
   overflow-x: hidden;
+  position: relative;
 }
 
+/* Scratchy texture pass to push the grunge feel */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22 viewBox=%220 0 200 200%22%3E%3Cpath d=%22M10 32 L190 22 M20 70 L180 60 M8 120 L192 110 M30 160 L170 150%22 stroke=%22%23ffffff%22 stroke-width=%222%22 stroke-linecap=%22round%22 opacity=%220.18%22/%3E%3Cpath d=%22M50 12 L68 190 M130 20 L148 188%22 stroke=%22%23ffffff%22 stroke-width=%221.5%22 opacity=%220.12%22/%3E%3C/svg%3E');
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Film grain overlay to add tactile grit */
 .noise {
   position: fixed;
   inset: 0;
   background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 opacity=%220.05%22 width=%2264%22 height=%2264%22 viewBox=%220 0 64 64%22%3E%3Cpath fill=%22%23fff%22 d=%22M24 0h1v1h-1zm4 0h2v1h-2zM0 1h3v1H0zm6 0h1v1H6zm6 0h2v1h-2zM5 2h1v1H5zm7 0h1v1h-1zm4 0h2v1h-2zM0 3h1v1H0zm8 0h2v1H8zm3 0h2v1h-2zm23 0h1v1h-1zM7 4h1v1H7zm4 0h2v1h-2zm7 0h1v1h-1zm6 0h3v1h-3zm5 0h2v1h-2zm4 0h1v1h-1zM0 5h3v1H0zm5 0h2v1H5zm7 0h1v1h-1zm5 0h1v1h-1zm5 0h1v1h-1zm6 0h2v1h-2zM0 6h2v1H0zm13 0h1v1h-1zm3 0h1v1h-1zm3 0h1v1h-1zm4 0h2v1h-2zm7 0h1v1h-1zM6 7h1v1H6zm5 0h1v1h-1zm8 0h2v1h-2zm10 0h2v1h-2zm5 0h1v1h-1zM0 8h1v1H0zm4 0h2v1H4zm4 0h1v1H8zm3 0h1v1h-1zm5 0h1v1h-1zm7 0h2v1h-2zm5 0h1v1h-1zm4 0h2v1h-2zm5 0h1v1h-1zm5 0h1v1h-1zM2 9h2v1H2zm4 0h1v1H6zm6 0h1v1h-1zm11 0h1v1h-1zm7 0h2v1h-2zm6 0h1v1h-1zm4 0h1v1h-1zM0 10h1v1H0zm5 0h1v1H5zm3 0h1v1H8zm7 0h1v1h-1zm5 0h1v1h-1zm11 0h3v1h-3zm10 0h1v1h-1zM8 11h1v1H8zm4 0h1v1h-1zm5 0h1v1h-1zm5 0h1v1h-1zm4 0h2v1h-2zm8 0h1v1h-1zM0 12h3v1H0zm7 0h2v1H7zm6 0h1v1h-1zm4 0h1v1h-1zm4 0h1v1h-1zm5 0h1v1h-1zm4 0h1v1h-1zm8 0h2v1h-2zm5 0h2v1h-2zm5 0h1v1h-1zM5 13h1v1H5zm4 0h1v1H9zm9 0h1v1h-1zm4 0h1v1h-1zm6 0h2v1h-2zm10 0h2v1h-2zm6 0h1v1h-1zM0 14h1v1H0zm2 0h1v1H2zm5 0h2v1H7zm8 0h2v1h-2zm4 0h2v1h-2zm17 0h1v1h-1zm5 0h2v1h-2zm5 0h1v1h-1zM3 15h1v1H3zm6 0h1v1H9zm5 0h2v1h-2zm7 0h1v1h-1zm11 0h1v1h-1zM0 16h1v1H0zm3 0h3v1H3zm6 0h1v1h-1zm9 0h2v1h-2zm5 0h2v1h-2zm10 0h1v1h-1zm5 0h3v1h-3zm6 0h1v1h-1zM7 17h1v1H7zm4 0h1v1h-1zm6 0h2v1h-2zm4 0h1v1h-1zm5 0h1v1h-1zm7 0h1v1h-1zm5 0h2v1h-2zm7 0h1v1h-1zM0 18h2v1H0zm4 0h1v1H4zm3 0h1v1H7zm7 0h1v1h-1zm11 0h1v1h-1zm6 0h1v1h-1zm6 0h1v1h-1zm5 0h1v1h-1zm6 0h1v1h-1zM10 19h1v1h-1zm3 0h1v1h-1zm5 0h1v1h-1zm5 0h1v1h-1zm4 0h3v1h-3zm7 0h1v1h-1zm6 0h2v1h-2zm6 0h1v1h-1z"/%3E%3C/svg%3E');
   pointer-events: none;
   mix-blend-mode: soft-light;
-  z-index: 0;
+  z-index: 1;
 }
 
+/* Base link and button resets */
 a, button {
   color: inherit;
   text-decoration: none;
 }
 
+/* Ensure content sits above texture overlays */
+.site-header,
+main,
+.footer {
+  position: relative;
+  z-index: 2;
+}
+
+/* Header styling for sticky navigation */
 .site-header {
   position: sticky;
   top: 0;
@@ -53,6 +83,7 @@ a, button {
   border-bottom: 1px solid var(--border);
 }
 
+/* Brand wordmark */
 .logo {
   font-family: 'Rubik Dirt', 'Space Grotesk', 'Inter', sans-serif;
   font-size: 24px;
@@ -63,6 +94,7 @@ a, button {
   text-shadow: 0 0 18px rgba(255, 0, 0, 0.45);
 }
 
+/* Primary navigation layout */
 .main-nav {
   display: flex;
   gap: 18px;
@@ -80,6 +112,7 @@ a, button {
   color: #ff5858;
 }
 
+/* Core button styling */
 .button {
   background: linear-gradient(120deg, #ff1f1f, #7a0000);
   color: #fff;
@@ -97,6 +130,7 @@ a, button {
   box-shadow: 0 15px 40px rgba(255, 0, 0, 0.45);
 }
 
+/* Secondary button style */
 .button--ghost {
   background: rgba(255, 255, 255, 0.04);
   color: #fff;
@@ -104,10 +138,12 @@ a, button {
   box-shadow: none;
 }
 
+/* Hero section layout */
 .hero {
   padding: 120px 32px 80px;
 }
 
+/* Hero grid alignment */
 .hero__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -115,6 +151,7 @@ a, button {
   align-items: center;
 }
 
+/* Headline treatment */
 .hero__copy h1 {
   font-family: 'Rubik Dirt', 'Space Grotesk', 'Inter', sans-serif;
   font-size: clamp(48px, 8vw, 82px);
@@ -124,6 +161,7 @@ a, button {
   text-shadow: 0 0 28px rgba(255, 0, 0, 0.5);
 }
 
+/* Small uppercase label */
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -132,12 +170,14 @@ a, button {
   margin-bottom: 6px;
 }
 
+/* Supporting paragraph text */
 .lede {
   font-size: 18px;
   color: #d1d5db;
   max-width: 640px;
 }
 
+/* CTA button row */
 .hero__cta {
   display: flex;
   gap: 12px;
@@ -145,12 +185,14 @@ a, button {
   flex-wrap: wrap;
 }
 
+/* Supporting tags list */
 .hero__meta {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
 }
 
+/* Small tag pills */
 .tag {
   background: rgba(255, 255, 255, 0.06);
   padding: 8px 12px;
@@ -159,6 +201,7 @@ a, button {
   color: #e5e7eb;
 }
 
+/* Feature card framing */
 .hero__card {
   position: relative;
   padding: 24px;
@@ -172,6 +215,7 @@ a, button {
   isolation: isolate;
 }
 
+/* Glow accent inside the hero card */
 .pulse {
   position: absolute;
   inset: -40% -60% auto auto;
@@ -182,6 +226,7 @@ a, button {
   z-index: 0;
 }
 
+/* Emblem styling for the hero card */
 .hero__emblem {
   position: absolute;
   right: 20px;
@@ -200,6 +245,7 @@ a, button {
   z-index: 0;
 }
 
+/* Inner ring for the emblem */
 .hero__emblem::before {
   content: '';
   position: absolute;
@@ -209,6 +255,7 @@ a, button {
   box-shadow: inset 0 0 0 3px rgba(255, 70, 70, 0.5);
 }
 
+/* Soft highlight overlay for the emblem */
 .hero__emblem::after {
   content: '';
   position: absolute;
@@ -217,6 +264,7 @@ a, button {
   mix-blend-mode: screen;
 }
 
+/* Wordmark inside the emblem */
 .hero__emblem-core {
   position: relative;
   z-index: 1;
@@ -231,6 +279,7 @@ a, button {
   text-align: center;
 }
 
+/* Individual word blocks for the emblem */
 .hero__emblem-core span {
   display: inline-block;
   padding: 6px 16px;
@@ -239,6 +288,7 @@ a, button {
   box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.4);
 }
 
+/* Decorative mask shape on the emblem */
 .hero__emblem-face {
   position: absolute;
   bottom: 14%;
@@ -250,6 +300,7 @@ a, button {
   opacity: 0.6;
 }
 
+/* Hero stat card */
 .hero__stat {
   position: relative;
   z-index: 2;
@@ -260,6 +311,7 @@ a, button {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
+/* Uppercase label text */
 .label {
   font-size: 12px;
   letter-spacing: 0.08em;
@@ -267,11 +319,13 @@ a, button {
   color: var(--muted);
 }
 
+/* Featured title in the stat card */
 .hero__stat h3 {
   margin: 8px 0 6px;
   font-size: 26px;
 }
 
+/* Genre chips container */
 .hero__stat .chips {
   display: flex;
   gap: 8px;
@@ -279,6 +333,7 @@ a, button {
   margin-top: 12px;
 }
 
+/* Individual genre chips */
 .chips span {
   background: rgba(255, 255, 255, 0.08);
   padding: 6px 10px;
@@ -286,6 +341,7 @@ a, button {
   font-size: 13px;
 }
 
+/* Animated meter */
 .signal {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -293,6 +349,7 @@ a, button {
   margin-top: 16px;
 }
 
+/* Individual meter bars */
 .signal span {
   display: block;
   height: 14px;
@@ -305,21 +362,25 @@ a, button {
 .signal span:nth-child(3) { animation-delay: 0.4s; }
 .signal span:nth-child(4) { animation-delay: 0.6s; }
 
+/* Signal animation */
 @keyframes pulse {
   0%, 100% { transform: scaleY(0.6); opacity: 0.5; }
   50% { transform: scaleY(1.1); opacity: 1; }
 }
 
+/* Shared section spacing */
 .panel {
   padding: 90px 32px;
   position: relative;
 }
 
+/* Section heading scale */
 .panel__heading h2 {
   font-size: clamp(32px, 5vw, 56px);
   margin: 4px 0 10px;
 }
 
+/* Show card layout */
 .shows .show-card {
   margin-top: 28px;
   display: grid;
@@ -332,8 +393,10 @@ a, button {
   padding: 24px;
 }
 
+/* Tighten lead spacing */
 .show-card__left p { margin-top: 8px; }
 
+/* Show detail list */
 .meta-list {
   list-style: none;
   padding: 0;
@@ -342,6 +405,7 @@ a, button {
   gap: 10px;
 }
 
+/* Show detail row */
 .meta-list li {
   display: flex;
   justify-content: space-between;
@@ -351,14 +415,17 @@ a, button {
   border-radius: 12px;
 }
 
+/* Muted labels in show detail list */
 .meta-list span { color: var(--muted); }
 
+/* CTA row inside show card */
 .cta-row {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
 }
 
+/* Poster mock layout */
 .poster {
   position: relative;
   height: 100%;
@@ -369,6 +436,7 @@ a, button {
   background: linear-gradient(160deg, #1a0307, #090507);
 }
 
+/* Poster background texture */
 .poster__bg {
   position: absolute;
   inset: 0;
@@ -380,6 +448,7 @@ a, button {
   opacity: 0.85;
 }
 
+/* Poster foreground content */
 .poster__content {
   position: relative;
   z-index: 1;
@@ -392,11 +461,13 @@ a, button {
   letter-spacing: 0.1em;
 }
 
+/* Poster title */
 .poster__title {
   font-size: 24px;
   font-weight: 700;
 }
 
+/* Poster divider line */
 .poster__line {
   width: 80px;
   height: 2px;
@@ -404,6 +475,7 @@ a, button {
   opacity: 0.7;
 }
 
+/* Poster detail text */
 .poster__details {
   display: grid;
   gap: 6px;
@@ -411,11 +483,13 @@ a, button {
   font-size: 13px;
 }
 
+/* Music section background accents */
 .music {
   background: radial-gradient(circle at 10% 50%, rgba(255, 20, 20, 0.12), transparent 40%),
     linear-gradient(145deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
 }
 
+/* Music card grid */
 .music-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -423,6 +497,7 @@ a, button {
   margin-top: 28px;
 }
 
+/* Music card container */
 .music-card {
   background: var(--panel);
   border-radius: var(--radius);
@@ -433,6 +508,7 @@ a, button {
   grid-template-rows: auto 1fr;
 }
 
+/* Music card artwork block */
 .music-card__art {
   position: relative;
   height: 160px;
@@ -445,9 +521,11 @@ a, button {
   isolation: isolate;
 }
 
+/* Alternate art variations */
 .music-card__art.alt { background: linear-gradient(135deg, #b00000, #ff3b3b); }
 .music-card__art.dark { background: linear-gradient(135deg, #100506, #3b0000); }
 
+/* Glow blob on music art */
 .music-card__art .blob {
   position: absolute;
   inset: -20% -10% auto auto;
@@ -458,16 +536,20 @@ a, button {
   z-index: 0;
 }
 
+/* Ensure text stays above the blob */
 .music-card__title { position: relative; z-index: 1; }
 
+/* Music card body spacing */
 .music-card__body { padding: 18px; display: grid; gap: 12px; }
 
+/* Link list for streaming services */
 .links {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
 }
 
+/* Streaming link pills */
 .links a {
   padding: 8px 12px;
   border-radius: 10px;
@@ -476,6 +558,7 @@ a, button {
   font-weight: 600;
 }
 
+/* Gallery grid layout */
 .gallery-grid {
   margin-top: 26px;
   display: grid;
@@ -483,6 +566,7 @@ a, button {
   gap: 18px;
 }
 
+/* Gallery card styling */
 .gallery-item {
   background: var(--panel);
   border-radius: var(--radius);
@@ -493,12 +577,14 @@ a, button {
   gap: 10px;
 }
 
+/* Gallery caption */
 .gallery-item p {
   margin: 0;
   color: #d1d5db;
   font-weight: 600;
 }
 
+/* Gallery image styling */
 .gallery-item img {
   width: 100%;
   height: 200px;
@@ -508,10 +594,12 @@ a, button {
   background: #1a0508;
 }
 
+/* Connect section background */
 .connect {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
 }
 
+/* Connect card grid */
 .connect-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -519,6 +607,7 @@ a, button {
   margin-top: 22px;
 }
 
+/* Individual connect card */
 .connect-card {
   background: var(--panel);
   border-radius: var(--radius);
@@ -529,12 +618,14 @@ a, button {
   gap: 10px;
 }
 
+/* Email signup form layout */
 .subscribe {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 10px;
 }
 
+/* Email input styling */
 .subscribe input {
   padding: 12px;
   border-radius: 10px;
@@ -543,6 +634,7 @@ a, button {
   color: #fff;
 }
 
+/* Signup button styling */
 .subscribe button {
   border: none;
   background: linear-gradient(120deg, #ff1f1f, #7a0000);
@@ -553,6 +645,7 @@ a, button {
   cursor: pointer;
 }
 
+/* Footer styling */
 .footer {
   padding: 30px 32px 50px;
   border-top: 1px solid var(--border);
@@ -562,6 +655,7 @@ a, button {
   justify-items: center;
 }
 
+/* Footer link row */
 .footer__links {
   display: flex;
   gap: 12px;
@@ -570,6 +664,7 @@ a, button {
   font-weight: 600;
 }
 
+/* Footer logo styling */
 .footer__logo {
   font-family: 'Space Grotesk', 'Inter', sans-serif;
   font-weight: 700;
@@ -577,11 +672,13 @@ a, button {
   text-transform: uppercase;
 }
 
+/* Footer note text */
 .footer__note {
   color: var(--muted);
   font-size: 14px;
 }
 
+/* Mobile adjustments */
 @media (max-width: 640px) {
   .site-header { padding: 14px 18px; }
   .main-nav { display: none; }
@@ -589,27 +686,32 @@ a, button {
   .subscribe { grid-template-columns: 1fr; }
 }
 
+/* Active nav link styling */
 .main-nav a.active {
   color: var(--accent);
   background: rgba(255, 46, 99, 0.12);
 }
 
+/* Entrance animation base state */
 .panel, .music-card, .gallery-item, .connect-card {
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
+/* Entrance animation active state */
 .panel.visible, .music-card.visible, .gallery-item.visible, .connect-card.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
+/* Ensure hover glow doesn't leak */
 .connect-card {
   position: relative;
   overflow: hidden;
 }
 
+/* Pointer-following glow for connect cards */
 .connect-card::after {
   content: '';
   position: absolute;
@@ -619,6 +721,7 @@ a, button {
   transition: background 0.2s ease;
 }
 
+/* Tablet adjustments for hero emblem */
 @media (max-width: 900px) {
   .hero__emblem {
     position: relative;
