@@ -92,6 +92,8 @@ main,
   text-transform: uppercase;
   color: #ff2b2b;
   text-shadow: 0 0 18px rgba(255, 0, 0, 0.45);
+  max-height: 25%;
+  max-width: 25%;
 }
 
 /* Primary navigation layout */
@@ -149,6 +151,9 @@ main,
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 32px;
   align-items: center;
+  position: relative;
+  overflow: visible;
+  z-index: 2;
 }
 
 /* Headline treatment */
@@ -210,7 +215,7 @@ main,
     radial-gradient(circle at 80% 0%, rgba(120, 0, 0, 0.35), transparent 55%),
     linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
   border: 1px solid var(--border);
-  overflow: hidden;
+  overflow: visible;
   box-shadow: var(--shadow);
   isolation: isolate;
 }
@@ -226,6 +231,21 @@ main,
   z-index: 0;
 }
 
+@keyframes emblem-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.hero,
+.hero__grid {
+  position: relative;
+  overflow: visible;
+}
+
+.hero__grid > * {
+  overflow: visible;
+}
+
 /* Emblem styling for the hero card */
 .hero__emblem {
   position: absolute;
@@ -234,35 +254,41 @@ main,
   width: min(300px, 45vw);
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  background: radial-gradient(circle at 40% 40%, rgba(255, 55, 55, 0.2), transparent 60%),
-    radial-gradient(circle at 70% 20%, rgba(255, 0, 0, 0.65), rgba(120, 0, 0, 0.9));
+
+  background: transparent;
   border: 3px solid rgba(255, 30, 30, 0.85);
   box-shadow: 0 0 40px rgba(255, 0, 0, 0.35);
-  display: grid;
-  place-items: center;
-  overflow: hidden;
+
+  overflow: visible; /* IMPORTANT */
   transform: rotate(-4deg);
-  z-index: 0;
+  z-index: 1;
+  animation: emblem-float 6s ease-in-out infinite;
 }
 
-/* Inner ring for the emblem */
-.hero__emblem::before {
-  content: '';
+.hero__card-content {
+  position: relative;
+  z-index: 2;
+
+}
+.hero__emblem-logo {
   position: absolute;
-  inset: 8%;
-  border-radius: 48% 48% 52% 52%;
-  border: 2px solid rgba(0, 0, 0, 0.65);
-  box-shadow: inset 0 0 0 3px rgba(255, 70, 70, 0.5);
+  inset: -12%;           /* makes it bigger than the circle */
+  width: 124%;
+  height: 124%;
+
+  object-fit: cover;
+  pointer-events: none;
+
+  z-index: 3;            /* ABOVE rings & glow */
 }
 
-/* Soft highlight overlay for the emblem */
+.hero__emblem::before,
 .hero__emblem::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.12), transparent 55%);
-  mix-blend-mode: screen;
+  z-index: 1;
+  pointer-events: none;
 }
+
+.hero__card::before { z-index: 0; }
 
 /* Wordmark inside the emblem */
 .hero__emblem-core {
