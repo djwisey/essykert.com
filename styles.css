@@ -31,6 +31,12 @@ body {
   position: relative;
 }
 
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 /* Scratchy texture pass to push the grunge feel */
 body::before {
   content: '';
@@ -84,16 +90,27 @@ main,
 
 /* Brand wordmark */
 .logo {
-  font-family: 'Rubik Dirt', 'Space Grotesk', 'Inter', sans-serif;
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #ff2b2b;
-  text-shadow: 0 0 18px rgba(255, 0, 0, 0.45);
-  max-height: 25%;
-  max-width: 25%;
+  width: clamp(80px, 1vw, 120px);
+  height: auto;
+  display: block;
 }
+
+/* Prevent flex/grid from stretching it */
+.site-header .logo,
+.site-header .logo img {
+  max-height: 44px; /* tweak */
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+.logo img {
+  width: clamp(80px, 8vw, 120px);
+  height: auto;
+  display: block;
+}
+
+nav .logo { max-width: 100%; }
 
 /* Primary navigation layout */
 .main-nav {
@@ -716,6 +733,16 @@ main,
   .main-nav { display: none; }
   .hero { padding-top: 90px; }
   .subscribe { grid-template-columns: 1fr; }
+
+  html, body {
+    overflow-x: hidden;
+    max-width: 400px;
+  }
+
+  img, svg, video { max-width: 100%; height: auto; }
+
+  .hero__card { overflow: hidden; }      /* clamps glow */
+  .pulse { right: -40px; left: auto; }   /* prevents huge off-screen blob */
 }
 
 /* Active nav link styling */
