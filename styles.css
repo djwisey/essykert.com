@@ -12,9 +12,7 @@
 }
 
 /* Global box sizing to keep layout predictable */
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 /* Base page styling with layered grunge gradients */
 body {
@@ -31,11 +29,6 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   position: relative;
-}
-
-html, body {
-  width: 100%;
-  overflow-x: hidden;
 }
 
 /* Scratchy texture pass to push the grunge feel */
@@ -61,24 +54,25 @@ body::before {
 }
 
 /* Base link and button resets */
-a, button {
-  color: inherit;
-  text-decoration: none;
-}
+a, button { color: inherit; text-decoration: none; }
 
 /* Ensure content sits above texture overlays */
-.site-header,
 main,
+.hero,
+.panel,
 .footer {
-  position: relative;
-  z-index: 2;
+  overflow: visible;
+}
+
+.page, .wrap, .container {
+  overflow: visible;
 }
 
 /* Header styling for sticky navigation */
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 999;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -89,29 +83,16 @@ main,
 }
 
 /* Brand wordmark */
-.logo{
-  width: clamp(80px, 1vw, 120px);
-  height: auto;
-  display: block;
-}
-
-/* Prevent flex/grid from stretching it */
-.site-header .logo,
-.site-header .logo img {
-  max-height: 44px;   /* tweak */
-  width: auto;
-  height: auto;
-  display: block;
-}
-
-.logo img{
-  width: clamp(80px, 8vw, 120px);
-  height: auto;
-  display: block;
-}
-
-nav .logo {
-  max-width: 100%;
+.logo {
+  font-family: 'Rubik Dirt', 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ff2b2b;
+  text-shadow: 0 0 18px rgba(255, 0, 0, 0.45);
+  max-height: 25%;
+  max-width: 25%;
 }
 
 /* Primary navigation layout */
@@ -162,6 +143,10 @@ nav .logo {
 /* Hero section layout */
 .hero {
   padding: 120px 32px 80px;
+
+  /* ✅ REQUIRED for absolute emblem positioning */
+  position: relative;
+  overflow: visible;
 }
 
 /* Hero grid alignment */
@@ -170,9 +155,10 @@ nav .logo {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 32px;
   align-items: center;
+
   position: relative;
   overflow: visible;
-  z-index: 2;
+  z-index: 0;
 }
 
 /* Headline treatment */
@@ -192,6 +178,7 @@ nav .logo {
   font-size: 12px;
   color: var(--muted);
   margin-bottom: 6px;
+  z-index: 0;
 }
 
 /* Supporting paragraph text */
@@ -228,9 +215,14 @@ nav .logo {
 /* Feature card framing */
 .hero__card {
   position: relative;
+
+  /* ✅ keep card under the emblem, but above background */
+  z-index: 5;
+
   padding: 24px;
   border-radius: var(--radius);
-  background: radial-gradient(circle at 20% 20%, rgba(255, 0, 0, 0.35), transparent 48%),
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 0, 0, 0.35), transparent 48%),
     radial-gradient(circle at 80% 0%, rgba(120, 0, 0, 0.35), transparent 55%),
     linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
   border: 1px solid var(--border);
@@ -250,27 +242,24 @@ nav .logo {
   z-index: 0;
 }
 
+/* Float animation */
 @keyframes emblem-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  0%, 100% { transform: translateY(-50%) rotate(-4deg); }
+  50% { transform: translateY(calc(-50% - 6px)) rotate(-4deg); }
 }
 
-.hero,
-.hero__grid {
-  position: relative;
-  overflow: visible;
-}
+/* ✅ Make sure hero children don’t clip overlays */
+.hero__grid > * { overflow: visible; }
 
-.hero__grid > * {
-  overflow: visible;
-}
-
-/* Emblem styling for the hero card */
+/* ✅ Emblem: ON TOP of everything + centered vertically in hero */
 .hero__emblem {
   position: absolute;
-  right: 20px;
-  top: 18px;
-  width: min(300px, 45vw);
+
+  /* right-side placement + true vertical centering */
+  right: clamp(20px, 6vw, 80px);
+  top: 50%;
+
+  width: min(320px, 40vw);
   aspect-ratio: 1 / 1;
   border-radius: 50%;
 
@@ -278,41 +267,41 @@ nav .logo {
   border: 3px solid rgba(255, 30, 30, 0.85);
   box-shadow: 0 0 40px rgba(255, 0, 0, 0.35);
 
-  overflow: visible; /* IMPORTANT */
-  transform: rotate(-4deg);
-  z-index: 1;
+  overflow: visible;
+  z-index: 20; /* ✅ above hero__grid + hero__card */
+
+  pointer-events: none;
   animation: emblem-float 6s ease-in-out infinite;
 }
 
+/* Ensure emblem image sits above rings/glow */
+.hero__emblem-logo {
+  position: absolute;
+  inset: -12%;
+  width: 124%;
+  height: 124%;
+  object-fit: cover;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* If you ever use pseudo-elements on emblem, keep them above */
+.hero__emblem::before,
+.hero__emblem::after {
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Hero card content stays above card glow */
 .hero__card-content {
   position: relative;
   z-index: 2;
-
 }
-.hero__emblem-logo {
-  position: absolute;
-  inset: -12%;           /* makes it bigger than the circle */
-  width: 124%;
-  height: 124%;
-
-  object-fit: cover;
-  pointer-events: none;
-
-  z-index: 3;            /* ABOVE rings & glow */
-}
-
-.hero__emblem::before,
-.hero__emblem::after {
-  z-index: 1;
-  pointer-events: none;
-}
-
-.hero__card::before { z-index: 0; }
 
 /* Wordmark inside the emblem */
 .hero__emblem-core {
   position: relative;
-  z-index: 1;
+  z-index: 4;
   display: grid;
   gap: 6px;
   font-family: 'Rubik Dirt', 'Space Grotesk', 'Inter', sans-serif;
@@ -343,6 +332,7 @@ nav .logo {
   background: rgba(0, 0, 0, 0.65);
   clip-path: polygon(20% 0%, 80% 0%, 95% 60%, 50% 100%, 5% 60%);
   opacity: 0.6;
+  z-index: 4;
 }
 
 /* Hero stat card */
@@ -485,7 +475,8 @@ nav .logo {
 .poster__bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 30% 40%, rgba(255, 20, 20, 0.55), transparent 45%),
+  background:
+    radial-gradient(circle at 30% 40%, rgba(255, 20, 20, 0.55), transparent 45%),
     radial-gradient(circle at 80% 20%, rgba(120, 0, 0, 0.5), transparent 40%),
     url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22%3E%3Cdefs%3E%3ClinearGradient id=%22g%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22%3E%3Cstop offset=%220%25%22 stop-color=%22%23ff1f1f%22/%3E%3Cstop offset=%22100%25%22 stop-color=%22%23600000%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill=%22none%22 stroke=%22url(%23g)%22 stroke-width=%225%22 d=%22M40 60c60 20 120 40 200 0s120-10 120 40-60 80-120 110-140 60-200 20-80-120 0-170Z%22/%3E%3C/svg%3E');
   background-size: cover;
@@ -507,10 +498,7 @@ nav .logo {
 }
 
 /* Poster title */
-.poster__title {
-  font-size: 24px;
-  font-weight: 700;
-}
+.poster__title { font-size: 24px; font-weight: 700; }
 
 /* Poster divider line */
 .poster__line {
@@ -530,7 +518,8 @@ nav .logo {
 
 /* Music section background accents */
 .music {
-  background: radial-gradient(circle at 10% 50%, rgba(255, 20, 20, 0.12), transparent 40%),
+  background:
+    radial-gradient(circle at 10% 50%, rgba(255, 20, 20, 0.12), transparent 40%),
     linear-gradient(145deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
 }
 
@@ -588,11 +577,7 @@ nav .logo {
 .music-card__body { padding: 18px; display: grid; gap: 12px; }
 
 /* Link list for streaming services */
-.links {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
+.links { display: flex; gap: 12px; flex-wrap: wrap; }
 
 /* Streaming link pills */
 .links a {
@@ -662,6 +647,19 @@ nav .logo {
   box-shadow: var(--shadow);
   display: grid;
   gap: 10px;
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* Pointer-following glow for connect cards */
+.connect-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 20, 20, 0.18), transparent 45%);
+  pointer-events: none;
+  transition: background 0.2s ease;
 }
 
 /* Email signup form layout */
@@ -730,12 +728,6 @@ nav .logo {
   .main-nav { display: none; }
   .hero { padding-top: 90px; }
   .subscribe { grid-template-columns: 1fr; }
-
-  html, body { overflow-x: hidden;
-  max-width: 400px; }
-  img, svg, video { max-width: 100%; height: auto; }
-  .hero__card { overflow: hidden; }  /* clamps glow */
-  .pulse { right: -40px; left: auto; } /* prevents huge off-screen blob */
 }
 
 /* Active nav link styling */
@@ -757,28 +749,17 @@ nav .logo {
   transform: translateY(0);
 }
 
-/* Ensure hover glow doesn't leak */
-.connect-card {
-  position: relative;
-  overflow: hidden;
-}
-
-/* Pointer-following glow for connect cards */
-.connect-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 20, 20, 0.18), transparent 45%);
-  pointer-events: none;
-  transition: background 0.2s ease;
-}
-
 /* Tablet adjustments for hero emblem */
 @media (max-width: 900px) {
   .hero__emblem {
     position: relative;
-    margin: 0 auto 18px;
-    right: auto;
     top: auto;
+    right: auto;
+
+    /* stop vertical centering transform on mobile/tablet */
+    animation: none;
+    transform: rotate(-4deg);
+
+    margin: 0 auto 18px;
   }
 }
