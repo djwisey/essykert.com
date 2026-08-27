@@ -1,58 +1,77 @@
-// Cache navigation links and section references for scroll-based highlighting.
-const navLinks = document.querySelectorAll('.main-nav a');
-const sections = Array.from(document.querySelectorAll('section'));
+﻿// Core page elements used by the navigation interactions.
+const header = document.querySelector('.header');
+const menu = document.querySelector('.menu');
+const nav = document.querySelector('#nav');
 
-// Toggle the active nav link based on the scroll position.
-const highlightNav = () => {
-  const scrollPos = window.scrollY + window.innerHeight / 2;
-  let active = null;
-  sections.forEach((section) => {
-    const rect = section.getBoundingClientRect();
-    const top = section.offsetTop;
-    const bottom = top + rect.height;
-    if (scrollPos >= top && scrollPos < bottom) {
-      active = section.getAttribute('id');
-    }
-  });
-  navLinks.forEach((link) => {
-    const href = link.getAttribute('href');
-    link.classList.toggle('active', href === `#${active}`);
-  });
-};
+// Close the mobile menu and restore scrolling.
+function closeMenu() {
+  header.classList.remove('open');
+  document.body.classList.remove('menu-open');
+  menu.setAttribute('aria-expanded', 'false');
+  menu.querySelector('span').textContent = 'Menu';
+}
 
-// Keep the navigation state in sync with scroll position.
-window.addEventListener('scroll', highlightNav);
-highlightNav();
+// Open or close the compact navigation.
+menu.addEventListener('click', () => {
+  const isOpening = !header.classList.contains('open');
 
-// Update the glow position on connect cards as the pointer moves.
-const connectCards = document.querySelectorAll('.connect-card');
-connectCards.forEach((card) => {
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    card.style.setProperty('--mx', `${x}px`);
-    card.style.setProperty('--my', `${y}px`);
-  });
-  card.addEventListener('mouseleave', () => {
-    card.style.setProperty('--mx', '50%');
-    card.style.setProperty('--my', '50%');
-  });
+  header.classList.toggle('open', isOpening);
+  document.body.classList.toggle('menu-open', isOpening);
+  menu.setAttribute('aria-expanded', String(isOpening));
+  menu.querySelector('span').textContent = isOpening ? 'Close' : 'Menu';
 });
 
-// Reveal panels as they enter the viewport.
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  },
-  { threshold: 0.2 }
+// Close the menu after choosing a destination or pressing Escape.
+nav.querySelectorAll('a').forEach((link) => {
+  link.addEventListener('click', closeMenu);
+});
+
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeMenu();
+});
+
+// Add a solid header background once content scrolls beneath it.
+window.addEventListener(
+  'scroll',
+  () => header.classList.toggle('scrolled', window.scrollY > 20),
+  { passive: true }
 );
 
-// Observe sections and cards for the reveal animation.
-document.querySelectorAll('.panel, .music-card, .gallery-item, .connect-card').forEach((el) => {
-  observer.observe(el);
+// Highlight the navigation link for the section currently in view.
+const navLinks = [...nav.querySelectorAll('a')];
+const sectionObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+
+      navLinks.forEach((link) => {
+        link.classList.toggle('active', link.hash === `#${entry.target.id}`);
+      });
+    });
+  },
+  { rootMargin: '-35% 0px -60%' }
+);
+
+document.querySelectorAll('main section[id]').forEach((section) => {
+  sectionObserver.observe(section);
 });
+
+// Reveal content once as it enters the viewport.
+const revealObserver = new IntersectionObserver(
+  (entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    });
+  },
+  { threshold: 0.12 }
+);
+
+document.querySelectorAll('.reveal').forEach((element) => {
+  revealObserver.observe(element);
+});
+
+// Keep the footer copyright current without manual edits.
+document.querySelector('[data-year]').textContent = new Date().getFullYear();

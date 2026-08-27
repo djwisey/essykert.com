@@ -1,197 +1,264 @@
-<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Essykert | Heavy, urgent, alive</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik+Dirt&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=6" />
-</head>
-<body>
-  <!-- Global texture overlays for the grunge mood -->
-  <div class="noise"></div>
-  <!-- Sticky site header with primary navigation -->
-  <header class="site-header">
-    <div class="logo"><img class="logo" src="images/logo_transparent.png"></div>
-    <nav class="main-nav" aria-label="Primary navigation">
-      <a href="#shows">Shows</a>
-      <a href="#music">Music</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#connect">Connect</a>
-    </nav>
-    <a class="button button--ghost" href="#music">Listen</a>
-  </header>
-
-  <main>
-    <!-- Hero intro with band statement and CTA -->
-    <section class="hero">
-      <div class="hero__grid">
-        <div class="hero__copy">
-          <p class="eyebrow">Heavy alternative from Shetland</p>
-          <h1>Essykert</h1>
-          <p class="lede">Noise-drenched hooks, drum assault, bass that rattles the room. Built for small island stages, sweaty rooms, and anyone who needs their catharsis loud—only in Shetland.</p>
-          <div class="hero__cta">
-            <a class="button" href="#shows">Catch a show</a>
-            <a class="button button--ghost" href="#music">Dive into the sound</a>
-          </div>
-          <div class="hero__meta">
-            <span class="tag">Live ready</span>
-            <span class="tag">DIY roots</span>
-            <span class="tag">Shetland</span>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Essykert — heavy alternative music from Shetland.">
+    <meta name="theme-color" content="#090909">
+    <title>
+      Essykert — Heavy alternative from Shetland
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=7">
+  </head>
+  <body>
+    <a class="skip" href="#main">
+      Skip to content
+    </a>
+    <!-- Fixed site header and responsive navigation -->
+    <header class="header">
+      <a class="brand" href="#top" aria-label="Essykert home">
+        <img src="images/logo_transparent.png" alt="Essykert">
+      </a>
+      <button class="menu" aria-expanded="false" aria-controls="nav">
+        <span>
+          Menu
+        </span>
+        <i>
+        </i>
+      </button>
+      <nav id="nav" aria-label="Primary">
+        <a href="#shows">
+          Shows
+        </a>
+        <a href="#music">
+          Music
+        </a>
+        <a href="#gallery">
+          Live
+        </a>
+        <a href="#contact">
+          Contact
+        </a>
+      </nav>
+    </header>
+    <main id="main">
+      <!-- Full-screen live hero -->
+      <section class="hero" id="top">
+        <img class="hero-bg" src="images/RN2026/full_band@rising_north.jpg" alt="Essykert performing on the Rising North main stage">
+        <div class="hero-shade">
+        </div>
+        <div class="shell hero-copy">
+          <p class="kicker">
+            Heavy alternative · Shetland
+          </p>
+          <h1>
+            Loud music
+            <br>
+            from the edge.
+          </h1>
+          <p>
+            Noise-drenched hooks, punishing drums and bass you feel in the floor. Built for sweaty rooms and island stages.
+          </p>
+          <div class="actions">
+            <a class="button" href="#music">
+              Hear the music
+            </a>
+            <a class="text-link" href="#shows">
+              See upcoming shows ↓
+            </a>
           </div>
         </div>
-        <div class="hero__card">
-          <div class="pulse"></div>
-          <div class="hero__emblem" aria-hidden="true">
-            <img src="images/logo_transparent2.png" alt="Essykert" class="hero__emblem-logo">
-            <div class="hero__emblem-face"></div>
+        <small>
+          Rising North · Shetland
+        </small>
+      </section>
+      <!-- Upcoming shows -->
+      <section class="section shell" id="shows">
+        <div class="heading reveal">
+          <p class="kicker">
+            On stage
+          </p>
+          <h2>
+            Shows
+          </h2>
+          <p>
+            New Shetland dates will be posted here first.
+          </p>
+        </div>
+        <div class="show reveal">
+          <div>
+            <strong>
+              TBA
+            </strong>
+            <span>
+              Shetland
+            </span>
           </div>
-          <div class="hero__card-content">
-            <div class="hero__stat">
-              <p class="label">Latest drop</p>
-              <h3>Trench Warfare</h3>
-              <p>Riff-driven urgency produced for dim rooms and bright strobes.</p>
-              <div class="chips">
-                <span>Thrash</span>
-                <span>Noise</span>
-                <span>Alt</span>
-              </div>
-              <div class="signal">
-                <span></span><span></span><span></span><span></span>
-              </div>
+          <div>
+            <h3>
+              Next show incoming
+            </h3>
+            <p>
+              Follow Essykert or join the list for the announcement.
+            </p>
+          </div>
+          <a class="button outline" href="#contact">
+            Keep me posted
+          </a>
+        </div>
+      </section>
+      <!-- Debut EP and Spotify player -->
+      <section class="music" id="music">
+        <div class="music-art reveal">
+          <iframe src="https://open.spotify.com/embed/album/1Z5ZXB8EkSKnhM5uIQrMR2?utm_source=generator&amp;theme=0" title="Listen to Essykert on Spotify" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+          </iframe>
+          <span>
+            Self-titled EP · Out now
+          </span>
+        </div>
+        <div class="music-copy reveal">
+          <p class="kicker">
+            The debut EP
+          </p>
+          <h2>
+            Essykert
+          </h2>
+          <p>
+            Original music from one of Shetland’s heaviest live bands. The self-titled EP follows the first single, “Michigan Blue Hell”, and is streaming now.
+          </p>
+          <div class="actions">
+            <a class="button" href="https://open.spotify.com/album/1Z5ZXB8EkSKnhM5uIQrMR2" target="_blank" rel="noopener">
+              Listen on Spotify
+            </a>
+            <a class="text-link" href="https://www.youtube.com/channel/UC3OlNKlAgXU0crSsk6X_lhQ" target="_blank" rel="noopener">
+              Watch on YouTube ↗
+            </a>
+          </div>
+        </div>
+      </section>
+      <!-- Band introduction and press coverage -->
+      <section class="section shell about" aria-labelledby="about-title">
+        <div class="about-grid">
+          <div class="reveal">
+            <p class="kicker">
+              Four-piece · Lerwick
+            </p>
+            <h2 id="about-title">
+              Made in Shetland.
+            </h2>
+          </div>
+          <div class="about-copy reveal">
+            <p>
+              Essykert is Ewan Moncrieff, Scott Moncrieff, David Irvine and Liam Inkster. What began with heavy covers has grown into original music shaped on Shetland stages.
+            </p>
+            <p>
+              In 2026 the band made their first appearance on Rising North’s main stage, releasing their debut EP on the same night.
+            </p>
+            <a class="text-link" href="https://www.shetnews.co.uk/2026/08/11/rising-north-meet-next-generation/" target="_blank" rel="noopener">
+              Read the Rising North feature ↗
+            </a>
+          </div>
+        </div>
+      </section>
+      <!-- Live photography -->
+      <section class="section shell" id="gallery">
+        <div class="heading heading-row reveal">
+          <div>
+            <p class="kicker">
+              In the room
+            </p>
+            <h2>
+              Live, as it happened
+            </h2>
+          </div>
+          <p>
+            No studio polish. Just amps, red lights and the people who turned up.
+          </p>
+        </div>
+        <div class="gallery">
+          <figure class="wide reveal">
+            <img src="images/RN2026/band_on_stage@rising_north.jpg" alt="Essykert performing live at Rising North" loading="lazy">
+            <figcaption>
+              Rising North 2026
+            </figcaption>
+          </figure>
+          <figure class="reveal">
+            <img src="images/Thule18July2026/drummer_playing@thule.jpg" alt="Essykert drummer performing live at the Thule Bar" loading="lazy">
+            <figcaption>
+              The Thule Bar
+            </figcaption>
+          </figure>
+          <figure class="reveal">
+            <img src="images/Riffmas2025/liam_playing@riffmas.jpeg" alt="Essykert guitarist performing at Riffmas" loading="lazy">
+            <figcaption>
+              Riffmas
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+      <!-- Booking contact and mailing list -->
+      <section class="section contact" id="contact">
+        <div class="shell contact-inner">
+          <div class="reveal">
+            <p class="kicker">
+              Get in touch
+            </p>
+            <h2>
+              Bring the noise.
+            </h2>
+            <p>
+              Bookings, press, local shows or anything else — send us a message.
+            </p>
+            <a class="mail" href="mailto:booking@essykert.com">
+              booking@essykert.com
+            </a>
+          </div>
+          <form class="signup reveal" action="https://formspree.io/f/xleqzjgr" method="post">
+            <label for="email">
+              Show news and new music, occasionally.
+            </label>
+            <div>
+              <input id="email" type="email" name="email" autocomplete="email" placeholder="Email address" required>
+              <button class="button">
+                Join the list
+              </button>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Upcoming shows section -->
-    <section id="shows" class="panel shows">
-      <div class="panel__heading">
-        <p class="eyebrow">Next gig</p>
-        <h2>Trenchbar // Lerwick, Shetland</h2>
-        <p class="lede">27 Dec · 8:30 PM · Free entry</p>
-      </div>
-      <div class="show-card">
-        <div class="show-card__left">
-          <p class="label">Headlining</p>
-          <h3>Trench Warfare Release</h3>
-          <p>Essykert commands the room with Shetland crew backing the blitz. New material, louder PA, zero mercy—no tours, no mainland dates.</p>
-          <ul class="meta-list">
-            <li><span>Doors</span><strong>8:00 PM</strong></li>
-            <li><span>Stage time</span><strong>8:30 PM</strong></li>
-            <li><span>Location</span><strong>Trenchbar · Lerwick · Shetland</strong></li>
-          </ul>
-          <div class="cta-row">
-            <a class="button" href="mailto:booking@essykert.com?subject=Essykert%20Guestlist">Get on the list</a>
-            <a class="button button--ghost" href="#connect">Promoters</a>
-          </div>
-        </div>
-        <div class="show-card__right">
-          <div class="poster">
-            <div class="poster__bg"></div>
-            <div class="poster__content">
-              <span class="poster__title">Trench Warfare</span>
-              <span class="poster__line"></span>
-              <div class="poster__details">
-                <span class="poster__date">27 Dec</span>
-                <span class="poster__time">8:30 PM</span>
-                <span class="poster__venue">Trench Bar</span>
-                <span class="poster__support">+ Throat Locust</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Listening section with releases -->
-    <section id="music" class="panel music">
-      <div class="panel__heading">
-        <p class="eyebrow">Listen</p>
-        <h2>Turn it up</h2>
-        <p class="lede">The first wave of Essykert recordings from the far north. Hit play and rattle your neighbours.</p>
-      </div>
-      <div class="music-grid">
-        <article class="music-card">
-          <div class="music-card__art">
-            <div class="blob"></div>
-            <span class="music-card__title">Coming soon to all platforms</span>
-          </div>
-
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Photo highlights from live shows -->
-    <section id="gallery" class="panel gallery">
-      <div class="panel__heading">
-        <p class="eyebrow">In the room</p>
-        <h2>Fragments from the pit</h2>
-        <p class="lede">Stage sweat, red lights, amps on the edge. Essykert live hits different on the islands.</p>
-      </div>
-      <div class="gallery-grid" role="list">
-        <div class="gallery-item" role="listitem">
-          <img src="images/wide_view@riffmass2.jpeg" alt="Essykert on stage in Shetland with red wash lighting" loading="lazy" />
-          <p>Red room vocals</p>
-        </div>
-        <div class="gallery-item" role="listitem">
-          <img src="images/scott_staring@trench.jpeg" alt="Band crowd in Shetland venue with teal lighting" loading="lazy" />
-          <p>Behind the kit</p>
-        </div>
-        <div class="gallery-item" role="listitem">
-          <img src="images/liam_playing@riffmas.jpeg" alt="Essykert crowd surge with warm stage glow" loading="lazy" />
-          <p>Island feedback</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact and mailing list sign-up -->
-    <section id="connect" class="panel connect">
-      <div class="panel__heading">
-        <p class="eyebrow">Connect</p>
-        <h2>Book Essykert in Shetland</h2>
-        <p class="lede">Festivals, halls, loud basements. We only play Shetland—tell us what you need and we’ll bring the volume.</p>
-      </div>
-      <div class="connect-grid">
-        <div class="connect-card">
-          <h3>Booking</h3>
-          <p>Send dates, tech specs, and backline details.</p>
-          <a class="button" href="mailto:booking@essykert.com">booking@essykert.com</a>
-        </div>
-        <div class="connect-card">
-          <h3>Press</h3>
-          <p>Bio, press photos, and interview availability on request.</p>
-          <a class="button button--ghost" href="mailto:press@essykert.com">press@essykert.com</a>
-        </div>
-        <div class="connect-card">
-          <h3>Stay Loud</h3>
-          <p>Monthly drop with show announcements and unreleased demos.</p>
-          <form class="subscribe" action="https://formspree.io/f/xleqzjgr" method="POST">
-            <input type="email" name="email" placeholder="Your email" required />
-            <button type="submit">Sign up</button>
+            <small>
+              No spam. Unsubscribe whenever you like.
+            </small>
           </form>
         </div>
+      </section>
+    </main>
+    <!-- Social links and copyright -->
+    <footer class="footer shell">
+      <img src="images/logo_transparent.png" alt="Essykert">
+      <div>
+        <a href="https://www.instagram.com/essykert/" target="_blank" rel="noopener">
+          Instagram
+        </a>
+        <a href="https://www.facebook.com/Essykert/" target="_blank" rel="noopener">
+          Facebook
+        </a>
+        <a href="https://open.spotify.com/album/1Z5ZXB8EkSKnhM5uIQrMR2" target="_blank" rel="noopener">
+          Spotify
+        </a>
+        <a href="https://www.youtube.com/channel/UC3OlNKlAgXU0crSsk6X_lhQ" target="_blank" rel="noopener">
+          YouTube
+        </a>
       </div>
-    </section>
-  </main>
-
-  <!-- Footer with social links -->
-  <footer class="footer">
-    <div class="footer__logo">Essykert</div>
-    <div class="footer__links">
-      <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a>
-      <a href="https://youtube.com" target="_blank" rel="noreferrer">YouTube</a>
-      <a href="https://bandcamp.com" target="_blank" rel="noreferrer">Bandcamp</a>
-      <a href="mailto:hello@essykert.com">Email</a>
-    </div>
-    <p class="footer__note">Built for the stage · 2024</p>
-  </footer>
-
-  <!-- Motion and interactivity scripts -->
-  <script src="script.js"></script>
-</body>
+      <p>
+        ©
+        <span data-year>
+        </span>
+        Essykert · Shetland
+      </p>
+    </footer>
+    <script src="script.js?v=7">
+    </script>
+  </body>
 </html>
+
