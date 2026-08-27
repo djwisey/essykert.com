@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Essykert//Shows//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:hefty-times-scalegion-20261003@essykert.com
+DTSTAMP:20260827T120000Z
+DTSTART:20261003T183000Z
+SUMMARY:Hefty Times at Scalegion
+LOCATION:Scalloway Legion\, Scalloway\, Shetland
+DESCRIPTION:All-ages classic Shetland rock and metal with TTD\, Essykert\, letmeleave and Grice. Doors 7:15pm. £7 online or £10 at the door.
+URL:https://wegottickets.com/f/25524
+END:VEVENT
+END:VCALENDAR

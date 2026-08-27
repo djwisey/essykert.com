@@ -8,6 +8,7 @@ function closeMenu() {
   header.classList.remove('open');
   document.body.classList.remove('menu-open');
   menu.setAttribute('aria-expanded', 'false');
+  menu.setAttribute('aria-label', 'Open menu');
   menu.querySelector('span').textContent = 'Menu';
 }
 
@@ -18,6 +19,7 @@ menu.addEventListener('click', () => {
   header.classList.toggle('open', isOpening);
   document.body.classList.toggle('menu-open', isOpening);
   menu.setAttribute('aria-expanded', String(isOpening));
+  menu.setAttribute('aria-label', isOpening ? 'Close menu' : 'Open menu');
   menu.querySelector('span').textContent = isOpening ? 'Close' : 'Menu';
 });
 
@@ -28,6 +30,10 @@ nav.querySelectorAll('a').forEach((link) => {
 
 window.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') closeMenu();
+});
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 900 && header.classList.contains('open')) closeMenu();
 });
 
 // Add a solid header background once content scrolls beneath it.
@@ -71,6 +77,35 @@ const revealObserver = new IntersectionObserver(
 
 document.querySelectorAll('.reveal').forEach((element) => {
   revealObserver.observe(element);
+});
+
+// Open live photographs in an accessible, keyboard-friendly dialog.
+const lightbox = document.querySelector('.lightbox');
+const lightboxImage = lightbox.querySelector('img');
+const lightboxCaption = lightbox.querySelector('p');
+const lightboxClose = lightbox.querySelector('.lightbox-close');
+let lightboxTrigger;
+
+document.querySelectorAll('[data-lightbox]').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    event.preventDefault();
+    lightboxTrigger = link;
+    lightboxImage.src = link.href;
+    lightboxImage.alt = link.querySelector('img').alt;
+    lightboxCaption.textContent = link.dataset.caption;
+    lightbox.showModal();
+  });
+});
+
+lightboxClose.addEventListener('click', () => lightbox.close());
+
+lightbox.addEventListener('click', (event) => {
+  if (event.target === lightbox) lightbox.close();
+});
+
+lightbox.addEventListener('close', () => {
+  lightboxImage.src = '';
+  lightboxTrigger?.focus();
 });
 
 // Keep the footer copyright current without manual edits.
